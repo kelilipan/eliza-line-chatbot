@@ -1,21 +1,24 @@
-import os
-from flask import Flask, request, abort
-
-from linebot import (
-    LineBotApi, WebhookHandler
+from eliza import Eliza
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
 )
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+from linebot import (
+    LineBotApi, WebhookHandler
 )
+import os
+from flask import Flask, request, abort
+from dotenv import load_dotenv
+load_dotenv()
 
+
+eliza = Eliza(lang='id')
 app = Flask(__name__)
 
 # get LINE_CHANNEL_ACCESS_TOKEN from your environment variable
 line_bot_api = LineBotApi(os.environ.get('LINE_CHANNEL_ACCESS_TOKEN'))
-
 # get LINE_CHANNEL_SECRET from your environment variable
 handler = WebhookHandler(os.environ.get('LINE_CHANNEL_SECRET'))
 
@@ -27,15 +30,13 @@ def home():
 
 @app.route("/callback", methods=['POST'])
 def callback():
-    print(os.environ.get('LINE_CHANNEL_SECRET'))
-    print(os.environ.get('LINE_CHANNEL_ACCESS_TOKEN'))
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-
+    print(body)
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -50,7 +51,7 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=eliza.respond(event.message.text)))
 
 
 if __name__ == "__main__":
