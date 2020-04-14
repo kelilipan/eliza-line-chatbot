@@ -71,6 +71,11 @@ id_dictionaries = [
         ["Hmm, iya.",
          "Sudah kuduga"]],
 
+    [r'(Baik|Alhamdulillah)',
+        ["Alhamdulillah",
+         "Semoga tetap baik saja.",
+         "Aku juga baik"]],
+
     [r'Bisakah kamu ([^\?]*)\??',
         ["Apa akmu berpikir saya tidak bisa %?",
          "Kalo aku bisa %, Lalu apa ?",
