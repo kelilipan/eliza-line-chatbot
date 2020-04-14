@@ -1,3 +1,2 @@
 flask
 line-bot-sdk
-python-decouple
