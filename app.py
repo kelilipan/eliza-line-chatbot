@@ -27,6 +27,8 @@ def home():
 
 @app.route("/callback", methods=['POST'])
 def callback():
+    print(os.environ.get('LINE_CHANNEL_SECRET'))
+    print(os.environ.get('LINE_CHANNEL_ACCESS_TOKEN'))
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
