@@ -20,6 +20,11 @@ line_bot_api = LineBotApi(os.environ.get('LINE_CHANNEL_SECRET'))
 handler = WebhookHandler(os.environ.get('LINE_CHANNEL_ACCESS_TOKEN'))
 
 
+@app.route("/")
+def home():
+    return "henlo world"
+
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
