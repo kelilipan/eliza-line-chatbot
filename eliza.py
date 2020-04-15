@@ -29,6 +29,7 @@ class Eliza:
         return ' '.join(words)
 
     def respond(self, text):
+        text = text.lower()
         for i in range(len(self.regex)):
             match = self.regex[i].match(text)  # melakukan regex di kalimat
             if match:  # jika regex sesuai
