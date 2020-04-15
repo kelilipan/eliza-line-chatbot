@@ -38,7 +38,12 @@ class Eliza:
                 # cari tahu info lalu gabungkan dengan respon jika respon perlu info
                 if (respon.find('%') != -1):
                     respon = respon.split('%')
-                    respon.insert(1, self.translate(match.group(1)))
+                    try:
+                        group = match.group(2)
+                    except IndexError:
+                        group = match.group(1)
+                    print(group)
+                    respon.insert(1, self.translate(group))
                     return ''.join(respon)
                 return respon
         # jika tidak ada di kamus, keluarkan kata random
