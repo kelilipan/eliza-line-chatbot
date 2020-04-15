@@ -1,6 +1,6 @@
 from eliza import Eliza
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -49,9 +49,15 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=eliza.respond(event.message.text)))
+    payload = TextSendMessage(text=eliza.respond(event.message.text))
+    if event.message.text.lower()=='p':
+        payload = ImageSendMessage(
+            original_content_url='https://raw.githubusercontent.com/raisoturu/eliza-line-chatbot/master/assets/images/p.jpg',
+            preview_image_url='https://raw.githubusercontent.com/raisoturu/eliza-line-chatbot/master/assets/images/p.jpg'
+        )
+
+    line_bot_api.reply_message(event.reply_token,payload)
+    
 
 
 if __name__ == "__main__":
