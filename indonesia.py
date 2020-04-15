@@ -150,3 +150,13 @@ id_default_responses = [
     "Lalu?",
     "Hmm...",
 ]
+id_reflections = {
+    "Aku": "Kamu",
+    "Gw": "Kamu",
+    "Gue": "Kamu",
+    "Gua": "Kamu",
+    "Lu": "Aku",
+    "Kamu": "Aku",
+    "ELo": "Aku",
+    "Elu": "Aku",
+}

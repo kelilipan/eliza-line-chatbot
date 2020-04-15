@@ -2,20 +2,31 @@ import re
 import random
 from english import *
 from indonesia import *
+# based on Study group artificial intelligence laboratory 2020
 
 
 class Eliza:
     def __init__(self, lang='en'):
         if lang == 'en':
+            self.reflections = en_reflections
             self.dictionaries = en_dictionaries
             self.default_responses = en_default_responses
         elif lang == 'id':
+            self.reflections = id_reflections
             self.dictionaries = id_dictionaries
             self.default_responses = id_default_responses
         self.regex = [re.compile(dictionary[0], re.IGNORECASE)
                       for dictionary in self.dictionaries]
         self.answers = [response[1]
                         for response in self.dictionaries]
+
+    def translate(self, text):
+        words = text.lower().split()
+        keys = self.reflections.keys()
+        for i in range(0, len(words)):
+            if words[i] in keys:
+                words[i] = self.reflections[words[i]]
+        return ' '.join(words)
 
     def respond(self, text):
         for i in range(len(self.regex)):
@@ -26,7 +37,7 @@ class Eliza:
                 # cari tahu info lalu gabungkan dengan respon jika respon perlu info
                 if (respon.find('%') != -1):
                     respon = respon.split('%')
-                    print(respon.insert(1, match.group(1)))
+                    respon.insert(1, self.translate(match.group(1)))
                     return ''.join(respon)
                 return respon
         # jika tidak ada di kamus, keluarkan kata random

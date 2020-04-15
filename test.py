@@ -1,4 +1,4 @@
 from eliza import Eliza
 
-eliza = Eliza()
-Eliza.respond('i hate you')
+eliza = Eliza(lang='id')
+print(eliza.respond('Aku bosan'))
