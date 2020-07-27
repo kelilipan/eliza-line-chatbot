@@ -119,12 +119,12 @@ id_dictionaries = [
          "Hmmm... Aku tidak yakin."
          ]],
 
-    [r'Selamat malam (.*)',
+    [r'Selamat malam (.*)|selamat malam|malam (.*)|malam',
         ["Malam.",
          "Selamat malam.",
          "Iya?"]],
 
-    [r'Selamat pagi (.*)',
+    [r'Selamat pagi (.*)|selamat pagi|pagi (.*)|pagi',
         ["pagi.",
          "Selamat pagi.",
          "Pagi yang cerah",
