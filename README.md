@@ -2,7 +2,7 @@
 
 Eliza chatbot implementation using [line-bot-sdk-python](https://github.com/line/line-bot-sdk-python).
 
-Try it here https://line.me/R/ti/p/%40537amjdd
+Try it here https://line.me/R/ti/p/%40537amjdd and say `Hi, Eliza`
 
 ## ELIZA
 
