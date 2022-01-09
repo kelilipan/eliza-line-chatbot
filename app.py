@@ -25,7 +25,7 @@ handler = WebhookHandler(os.environ.get('LINE_CHANNEL_SECRET'))
 
 @app.route("/")
 def home():
-    return "henlo world"
+    return "hello world"
 
 
 @app.route("/callback", methods=['POST'])
